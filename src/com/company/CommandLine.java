@@ -48,13 +48,13 @@ class CommandLine {
             }
             // commands that customers can access:
             else if(inputs[0].equals("apply") && customer.loggedIn) {
-
+                apply();
             }
             else if(inputs[0].equals("view") && customer.loggedIn) {
 
             }
             else if(inputs[0].equals("withdraw") && customer.loggedIn) {
-
+                withdraw();
             }
             else if(inputs[0].equals("deposit") && customer.loggedIn) {
 
@@ -134,5 +134,18 @@ class CommandLine {
             employee.login(id,password);
         }
         // TODO check return value of login and make sure login was successful
+    }
+
+    public void apply() {
+        System.out.print("What type of account would you like to apply for? (checking, saving, etc.): ");
+        String accountName = scanner.nextLine();
+        customer.apply(accountName);
+    }
+
+    public void withdraw() {
+        System.out.println("How much money would you like to withdraw?");
+        int amount = scannerInt.nextInt();
+        System.out.println("Which account would you like to withdraw from ?");
+        // TODO, print out available accounts
     }
 }

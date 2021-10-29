@@ -5,7 +5,7 @@ package com.company;
 public class User {
     int id;
     String name;
-    String password;
+    protected String password;
     boolean loggedIn;
 
     public User() {
