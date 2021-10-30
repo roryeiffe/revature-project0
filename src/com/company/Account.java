@@ -1,18 +1,41 @@
 package com.company;
 
 public class Account {
-    int balance;
+    private int balance;
+    private boolean verified;
+    private int ownerId;
 
     public Account() {
-        balance = 0;
+
     }
 
-    public boolean deposit(int money) {
-
-        return false;
+    public Account(int balance, boolean verified, int ownerId) {
+        this.balance = balance;
+        this.verified = verified;
+        this.ownerId = ownerId;
     }
 
-    public boolean withdraw(int money) {
-        return false;
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 }
