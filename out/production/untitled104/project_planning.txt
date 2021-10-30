@@ -51,6 +51,9 @@ Account:
 	balance 		integer, cannot be negative, default to 0
 	activated		boolean
 
+create table account (id integer primary key auto_increment, name char(50),
+cust_id integer, balance integer, status char(50) DEFAULT 'unverified', CONSTRAINT fk_cust FOREIGN KEY (cust_id) REFERENCES customer (id));
+
 User:
 	id 				integer Primary Key, auto_increment
 	name 			char(50)

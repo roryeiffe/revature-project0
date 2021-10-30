@@ -37,6 +37,7 @@ public class CustomerDaoImpl implements CustomerDao{
         }
     }
 
+    // update a given customer in the database:
     @Override
     public void update(Customer customer) throws SQLException {
         String sql = "Update customer set name = ?, password = ? where id = ?";
@@ -54,6 +55,7 @@ public class CustomerDaoImpl implements CustomerDao{
 
     }
 
+    // get all customers:
     @Override
     public List<Customer> getCustomers() throws SQLException {
         List<Customer> customers = new ArrayList<Customer>();

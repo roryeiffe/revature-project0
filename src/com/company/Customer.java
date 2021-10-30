@@ -13,15 +13,17 @@ public class Customer{
     int [] accountIds;
 
     public Customer() {
-        this.status = "pending";
+
     }
 
+    // constructor that takes in all fields:
     public Customer(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
     }
 
+    // setter and getter methods:
     public void setId(int id) {
         this.id = id;
     }
