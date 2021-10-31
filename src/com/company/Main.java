@@ -2,6 +2,7 @@ package com.company;
 
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -37,8 +38,13 @@ public class Main {
             System.out.println("PRESS 10: Register as Customer");
             System.out.println("PRESS 11: Login as Customer");
             System.out.println("PRESS 12: Apply for Account");
+            System.out.println("PRESS 13: View your accounts");
+            System.out.println("PRESS 14: View a specific account");
+            System.out.println("PRESS 15: Make a deposit");
+            System.out.println("PRESS 16: Make a withdrawal");
             System.out.println("Employee Options:");
             System.out.println("PRESS 20: Login as employee");
+            System.out.println("PRESS 21: Verify Accounts");
             System.out.println("PRESS 30: Exit");
             input = numberReader.nextInt();
             switch(input) {
@@ -96,7 +102,100 @@ public class Main {
                     accountDao.add(account);
                     System.out.println("Your account id is " + account.getId());
                     break;
-
+                // View Accounts
+                case 13:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to view accounts!");
+                        break;
+                    }
+                    List<Account> accounts = accountDao.getAccountsForCustomer(customer.getId());
+                    for(Account account1: accounts) {
+                        System.out.println(account1.toString());
+                    }
+                    break;
+                // View Specific Account:
+                case 14:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to view account!");
+                        break;
+                    }
+                    System.out.print("Please enter the id of the account which you would like to view: ");
+                    id = numberReader.nextInt();
+                    // fetch the account
+                    account = accountDao.getAccountById(id);
+                    // make sure the customer owns this account before printing:
+                    if(account.getOwnerId() != customer.getId()) {
+                        System.out.println("You do not own this account.");
+                        break;
+                    }
+                    else{
+                        System.out.println(account.toString());
+                    }
+                    break;
+                // Make a deposit:
+                case 15:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to make a deposit!");
+                        break;
+                    }
+                    System.out.print("Enter the account which you would like to deposit: ");
+                    id = numberReader.nextInt();
+                    // fetch the account
+                    account = accountDao.getAccountById(id);
+                    if(!account.getStatus().equals("verified")){
+                        System.out.println("Account not verified. Please wait for one of our employees to verify your account.");
+                        break;
+                    }
+                    if(account.getOwnerId() != customer.getId()) {
+                        System.out.println("Cannot deposit to unowned account! Must make a transfer instead.");
+                        break;
+                    }
+                    System.out.print("Enter the amount you would like to deposit: ");
+                    int money = numberReader.nextInt();
+                    if (money < 0) {
+                        System.out.println("You must enter a positive amount!");
+                        break;
+                    }
+                    // update the account object
+                    account.setBalance(account.getBalance() + money);
+                    // update the database:
+                    accountDao.update(account);
+                    System.out.println("Deposit successful!");
+                    break;
+                // Make a withdrawal:
+                case 16:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to make a withdrawal!");
+                        break;
+                    }
+                    System.out.print("Enter the account which you would like to withdraw from: ");
+                    id = numberReader.nextInt();
+                    // fetch the account
+                    account = accountDao.getAccountById(id);
+                    if(!account.getStatus().equals("verified")){
+                        System.out.println("Account not verified. Please wait for one of our employees to verify your account.");
+                        break;
+                    }
+                    if(account.getOwnerId() != customer.getId()) {
+                        System.out.println("Cannot withdraw from unowned account! Must make a transfer instead.");
+                        break;
+                    }
+                    System.out.print("Enter the amount you would like to withdraw: ");
+                    money = numberReader.nextInt();
+                    if (money < 0) {
+                        System.out.println("You must enter a positive amount!");
+                        break;
+                    }
+                    if (account.getBalance() - money < 0) {
+                        System.out.println("Not enough balance!");
+                        break;
+                    }
+                    // update the account object
+                    account.setBalance(account.getBalance() - money);
+                    // update the database:
+                    accountDao.update(account);
+                    System.out.println("Withdraw successful!");
+                    break;
                 // Employee Login:
                 case 20:
                     // Get user information:
@@ -119,6 +218,30 @@ public class Main {
                         employee = null;
                     }
                     break;
+                // verify accounts:
+                case 21:
+                    if(!loggedInEmployee || employee == null) {
+                        System.out.println("Must be logged in as an employee to make a verify accounts!");
+                        break;
+                    }
+                    accounts = accountDao.getAllAccounts();
+                    int count = 0;
+                    for(Account account1: accounts) {
+                        if (account1.getStatus().equals("unverified")){
+                            System.out.println(account1.toString());
+                            count ++;
+                        }
+                    }
+                    if(count == 0) {
+                        System.out.println("No unverified accounts!");
+                        break;
+                    }
+                    System.out.println("Enter the account id you would like to verify:");
+                    id = numberReader.nextInt();
+                    Account account1 = accountDao.getAccountById(id);
+                    account1.setStatus("verified");
+                    accountDao.update(account1);
+                    break;
                 // Exiting the program:
                 case 30:
                     System.out.println("Thank you for using the munny bank!");
@@ -127,6 +250,8 @@ public class Main {
             }
         }
     }
+
+
 
 
 }

@@ -5,12 +5,12 @@ public class Account {
     private int id;
     // name of this account (checking, savings, etc.)
     private String name;
+    // the customer who owns this account:
+    private int ownerId;
     // how much money is stored in this account:
     private int balance;
     // status can be unverified or unverified
     private String status;
-    // the customer who owns this account:
-    private int ownerId;
 
 
     // default constructor:
@@ -19,7 +19,8 @@ public class Account {
     }
 
     // constructor that takes in all fields:
-    public Account(String name, int balance, String status, int ownerId) {
+    public Account(int id, String name, int ownerId, int balance, String status) {
+        this.id = id;
         this.name = name;
         this.balance = balance;
         this.status = status;
@@ -76,5 +77,14 @@ public class Account {
         this.ownerId = ownerId;
     }
 
-
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ownerId=" + ownerId +
+                ", balance=" + balance +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

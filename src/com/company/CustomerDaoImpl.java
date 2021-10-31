@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Respsonible for accessing/updating the database
 public class CustomerDaoImpl implements CustomerDao{
 
     Connection connection;
@@ -80,11 +81,14 @@ public class CustomerDaoImpl implements CustomerDao{
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1,id_);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
+        if(resultSet.next()){
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String password = resultSet.getString(3);
             customer = new Customer(id,name,password);
+        }
+        else{
+            System.out.println("Customer not found.");
         }
         return customer;
     }
