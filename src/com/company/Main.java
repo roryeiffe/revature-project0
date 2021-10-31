@@ -44,7 +44,8 @@ public class Main {
             System.out.println("PRESS 16: Make a withdrawal");
             System.out.println("Employee Options:");
             System.out.println("PRESS 20: Login as employee");
-            System.out.println("PRESS 21: Verify Accounts");
+            System.out.println("PRESS 21: Verify accounts");
+            System.out.println("PRESS 22: View accounts for a specific customer");
             System.out.println("PRESS 30: Exit");
             input = numberReader.nextInt();
             switch(input) {
@@ -241,6 +242,29 @@ public class Main {
                     Account account1 = accountDao.getAccountById(id);
                     account1.setStatus("verified");
                     accountDao.update(account1);
+                    break;
+                // View accounts for a specific customer:
+                case 22:
+                    if(!loggedInEmployee || employee == null) {
+                        System.out.println("Must be logged in as an employee to make a view accounts!");
+                        break;
+                    }
+                    System.out.println("Enter the customer id which you would like to view:");
+                    id = numberReader.nextInt();
+                    customer = customerDao.getCustomerById(id);
+                    if(customer == null) {
+                        System.out.println("This customer does not exist.");
+                        break;
+                    }
+                    accounts = accountDao.getAccountsForCustomer(id);
+                    count = 0;
+                    for(Account account2: accounts) {
+                        System.out.println(account2.toString());
+                        count ++;
+                    }
+                    if(count == 0){
+                        System.out.println("This customer has no accounts.");
+                    }
                     break;
                 // Exiting the program:
                 case 30:
