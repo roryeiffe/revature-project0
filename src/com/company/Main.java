@@ -13,6 +13,7 @@ public class Main {
         EmployeeDao employeeDao = EmployeeDaoFactory.getEmployeeDao();
         CustomerDao customerDao = CustomerDaoFactory.getCustomerDao();
         AccountDao accountDao = AccountDaoFactory.getAccountDao();
+        TransactionDao transactionDao = TransactionDaoFactory.getTransactionDao();
 
         // Create scanners to read input
         Scanner numberReader = new Scanner(System.in);
@@ -42,6 +43,7 @@ public class Main {
             System.out.println("PRESS 14: View a specific account");
             System.out.println("PRESS 15: Make a deposit");
             System.out.println("PRESS 16: Make a withdrawal");
+            System.out.println("PRESS 17: Post a transfer");
             System.out.println("Employee Options:");
             System.out.println("PRESS 20: Login as employee");
             System.out.println("PRESS 21: Verify accounts");
@@ -196,6 +198,51 @@ public class Main {
                     // update the database:
                     accountDao.update(account);
                     System.out.println("Withdraw successful!");
+                    break;
+                // Post a money transfer:
+                case 17:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to post a money transfer!");
+                        break;
+                    }
+                    System.out.print("Please enter the account id which will give the money: ");
+                    int donorId = numberReader.nextInt();
+                    Account accountDonor = accountDao.getAccountById(donorId);
+                    if(accountDonor == null) {
+                        System.out.println("Account does not exist.");
+                        break;
+                    }
+                    if(accountDonor.getOwnerId() != customer.getId()){
+                        System.out.println("You do not own this account.");
+                        break;
+                    }
+                    if(!accountDonor.getStatus().equals("verified")){
+                        System.out.println("Account not verified.");
+                        break;
+                    }
+                    System.out.print("Please enter the account id which will receive money: ");
+                    int recipId = numberReader.nextInt();
+                    Account accountRecip = accountDao.getAccountById(recipId);
+                    if(accountRecip == null){
+                        System.out.println("Account does not exist.");
+                        break;
+                    }
+                    if(!accountRecip.getStatus().equals("verified")){
+                        System.out.println("Account not verified.");
+                        break;
+                    }
+                    System.out.print("Please enter the amount you would like to transfer from account " + accountDonor.getId() + " to account " + accountRecip.getId() + ": ");
+                    money = numberReader.nextInt();
+                    if (money < 0) {
+                        System.out.println("Cannot transfer a negative amount!");
+                        break;
+                    }
+                    if (accountDonor.getBalance() - money < 0) {
+                        System.out.println("Account " + accountDonor.getId() + " does not have enough money to give.");
+                        break;
+                    }
+                    Transaction transaction = new Transaction(donorId, recipId, money);
+                    transactionDao.add(transaction);
                     break;
                 // Employee Login:
                 case 20:

@@ -51,6 +51,24 @@ Account:
 	balance 		integer, cannot be negative, default to 0
 	activated		boolean
 
+Transaction:
+    id              integer Primary Key auto_increment
+    donor_id        integer foreign key referencing customer(id)
+    recip_id        integer foreign key referencing customer(id)
+    amount          integer
+    status          char(50), default to pending
+
+create table transaction (
+    id integer primary key auto_increment,
+    donor_id integer,
+    recip_id integer,
+    amount integer,
+    status char(50) DEFAULT 'pending',
+    CONSTRAINT fk_donor FOREIGN KEY (donor_id) REFERENCES customer(id),
+    CONSTRAINT fk_recip FOREIGN KEY (recip_id) REFERENCES customer(id)
+    );
+
+
 create table account (id integer primary key auto_increment, name char(50),
 cust_id integer, balance integer, status char(50) DEFAULT 'unverified', CONSTRAINT fk_cust FOREIGN KEY (cust_id) REFERENCES customer (id));
 
