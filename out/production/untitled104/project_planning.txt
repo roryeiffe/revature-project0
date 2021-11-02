@@ -5,7 +5,7 @@ Project specs:
 # Bank 
 ## Description The Bank app is a console-based application that simulates banking operations. 
 A customer can apply for an account, view their balance, and make withdrawals and deposits. 
-An employee can aprove or deny accounts and view account balances for their customers. 
+An employee can approve or deny accounts and view account balances for their customers.
 
 ## Purpose We want to see that you can meet deadlines and that you can code. 
 You are expected to complete the following requirements and give a 5 minute presentation of your project to our QC team. 
@@ -50,6 +50,27 @@ Account:
 	cust_id 		integer foreign key Referencing Customer(id)
 	balance 		integer, cannot be negative, default to 0
 	activated		boolean
+
+Transaction:
+    id              integer Primary Key auto_increment
+    donor_id        integer foreign key referencing customer(id)
+    recip_id        integer foreign key referencing customer(id)
+    amount          integer
+    status          char(50), default to pending
+
+create table transaction (
+    id integer primary key auto_increment,
+    donor_id integer,
+    recip_id integer,
+    amount integer,
+    status char(50) DEFAULT 'pending',
+    CONSTRAINT fk_donor FOREIGN KEY (donor_id) REFERENCES customer(id),
+    CONSTRAINT fk_recip FOREIGN KEY (recip_id) REFERENCES customer(id)
+    );
+
+
+create table account (id integer primary key auto_increment, name char(50),
+cust_id integer, balance integer, status char(50) DEFAULT 'unverified', CONSTRAINT fk_cust FOREIGN KEY (cust_id) REFERENCES customer (id));
 
 User:
 	id 				integer Primary Key, auto_increment
