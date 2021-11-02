@@ -44,10 +44,12 @@ public class Main {
             System.out.println("PRESS 15: Make a deposit");
             System.out.println("PRESS 16: Make a withdrawal");
             System.out.println("PRESS 17: Post a transfer");
+            System.out.println("PRESS 18: View/Accept Money Transfers");
             System.out.println("Employee Options:");
             System.out.println("PRESS 20: Login as employee");
             System.out.println("PRESS 21: Verify accounts");
             System.out.println("PRESS 22: View accounts for a specific customer");
+            System.out.println("PRESS 23: View a log of all transactions");
             System.out.println("PRESS 30: Exit");
             input = numberReader.nextInt();
             switch(input) {
@@ -244,6 +246,44 @@ public class Main {
                     Transaction transaction = new Transaction(donorId, recipId, money);
                     transactionDao.add(transaction);
                     break;
+                // Accept money transfer:
+                case 18:
+                    if(!loggedInCustomer || customer == null) {
+                        System.out.println("Must be logged in as customer to accept a money transfer!");
+                        break;
+                    }
+                    List<Transaction> transactions = transactionDao.getAllIncoming(customer.getId());
+                    System.out.println(transactions.size());
+                    for(Transaction transaction1: transactions) {
+                        // only accept non-accepted transactions:
+                        if(transaction1.getStatus().equals("pending")) {
+                            System.out.println("Incoming transaction (" + transaction1.getId() + ") from " + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
+                        }
+                    }
+                    System.out.println("Which transaction would you like to accept?");
+                    id = numberReader.nextInt();
+                    // retrieve the transaction:
+                    Transaction transaction1 = transactionDao.get(id);
+                    money = transaction1.getAmount();
+                    // the account that the money is coming from:
+                    Account account1 = accountDao.getAccountById(transaction1.getDonor_id());
+                    Account account2 = accountDao.getAccountById(transaction1.getRecip_id());
+                    if(account1.getBalance() - money < 0) {
+                        System.out.println("Transaction cancelled. Donor no loner has sufficient funds.");
+                        transaction1.setStatus("cancelled");
+                        transactionDao.update(transaction1);
+                        break;
+                    }
+                    // update both accounts:
+                    account1.setBalance(account1.getBalance() - money);
+                    account2.setBalance(account2.getBalance() + money);
+                    // update the transaction:
+                    transaction1.setStatus("accepted");
+                    // update the databases:
+                    accountDao.update(account1);
+                    accountDao.update(account2);
+                    transactionDao.update(transaction1);
+                    break;
                 // Employee Login:
                 case 20:
                     // Get user information:
@@ -274,9 +314,9 @@ public class Main {
                     }
                     accounts = accountDao.getAllAccounts();
                     int count = 0;
-                    for(Account account1: accounts) {
-                        if (account1.getStatus().equals("unverified")){
-                            System.out.println(account1.toString());
+                    for(Account account3: accounts) {
+                        if (account3.getStatus().equals("unverified")){
+                            System.out.println(account3.toString());
                             count ++;
                         }
                     }
@@ -286,7 +326,7 @@ public class Main {
                     }
                     System.out.println("Enter the account id you would like to verify:");
                     id = numberReader.nextInt();
-                    Account account1 = accountDao.getAccountById(id);
+                    account1 = accountDao.getAccountById(id);
                     account1.setStatus("verified");
                     accountDao.update(account1);
                     break;
@@ -305,8 +345,8 @@ public class Main {
                     }
                     accounts = accountDao.getAccountsForCustomer(id);
                     count = 0;
-                    for(Account account2: accounts) {
-                        System.out.println(account2.toString());
+                    for(Account account4: accounts) {
+                        System.out.println(account4.toString());
                         count ++;
                     }
                     if(count == 0){
@@ -314,6 +354,16 @@ public class Main {
                     }
                     break;
                 // Exiting the program:
+                case 23:
+                    if(!loggedInEmployee || employee == null) {
+                        System.out.println("Must be logged in as an employee to make a view accounts!");
+                        break;
+                    }
+                    List<Transaction> transactions1 = transactionDao.getAll();
+                    for(Transaction transaction2:transactions1) {
+                        System.out.println(transaction2.toString());
+                    }
+                    break;
                 case 30:
                     System.out.println("Thank you for using the munny bank!");
                     flag = false;

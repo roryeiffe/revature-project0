@@ -41,7 +41,7 @@ public class TransactionDaoImpl implements TransactionDao{
     @Override
     public void update(Transaction transaction) throws SQLException {
         // only ever need to change status, since the others should stay the same:
-        String sql = "update transaction set status ? where id = ?";
+        String sql = "update transaction set status = ? where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,transaction.getStatus());
         preparedStatement.setInt(2,transaction.getId());
@@ -101,8 +101,9 @@ public class TransactionDaoImpl implements TransactionDao{
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1,custId);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.next()){
+        while(resultSet.next()){
             int id_ = resultSet.getInt(1);
+            System.out.println(id_);
             int donor_id = resultSet.getInt(2);
             int recip_id = resultSet.getInt(3);
             int amount = resultSet.getInt(4);
