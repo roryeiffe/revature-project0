@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     // Create our daos (data access objects):
-    EmployeeDao employeeDao;
-    CustomerDao customerDao;
+    UserDao employeeDao;
+    UserDao customerDao;
     AccountDao accountDao;
     TransactionDao transactionDao;
 
@@ -243,7 +243,7 @@ public class Main {
                     System.out.print("Please enter your password: ");
                     password = stringReader.nextLine();
                     // make the query:
-                    customer = customerDao.getCustomerById(id);
+                    customer = customerDao.getUserById(id);
                     if (customer == null) {
                         System.out.println("Id does not exist.");
                     }
@@ -414,7 +414,7 @@ public class Main {
                     System.out.print("Please enter your password: ");
                     password = stringReader.nextLine();
                     // make query to database:
-                    employee = employeeDao.getEmployeeById(id);
+                    employee = employeeDao.getUserById(id);
                     if (employee == null) {
                         System.out.println("Id does not exist.");
                     }
@@ -450,8 +450,10 @@ public class Main {
                     System.out.println("Enter the account id you would like to verify:");
                     id = numberReader.nextInt();
                     account = accountDao.getAccountById(id);
-                    account.setStatus("verified");
-                    accountDao.update(account);
+                    if (account != null && !account.getStatus().equals("verified")){
+                        account.setStatus("verified");
+                        accountDao.update(account);
+                    }
                     break;
                 // View accounts for a specific customer:
                 case 22:
@@ -461,7 +463,7 @@ public class Main {
                     // get input:
                     System.out.println("Enter the customer id which you would like to view:");
                     id = numberReader.nextInt();
-                    customer = customerDao.getCustomerById(id);
+                    customer = customerDao.getUserById(id);
                     if(customer == null) {
                         System.out.println("This customer does not exist.");
                         break;

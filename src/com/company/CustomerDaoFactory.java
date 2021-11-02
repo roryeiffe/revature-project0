@@ -4,17 +4,17 @@ package com.company;
 // the customer dao implementation is created:
 // (singleton)
 public class CustomerDaoFactory {
-    private static CustomerDao dao = null;
+    private static UserDao dao = null;
 
     private CustomerDaoFactory () {
         if(dao == null) {
-            dao = new CustomerDaoImpl();
+            dao = new UserDaoImpl("customer");
         }
     }
 
-    public static CustomerDao getCustomerDao() {
+    public static UserDao getCustomerDao() {
         if(dao == null) {
-            dao = new CustomerDaoImpl();
+            dao = new UserDaoImpl("customer");
         }
         return dao;
     }
