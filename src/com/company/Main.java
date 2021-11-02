@@ -17,8 +17,8 @@ public class Main {
     Scanner stringReader;
 
     // Objects to store customer and employee objects:
-    Employee employee;
-    Customer customer;
+    User employee;
+    User customer;
 
     // Boolean to tell whether customers and employees are logged in:
     boolean loggedInEmployee, loggedInCustomer;
@@ -222,9 +222,7 @@ public class Main {
                     System.out.print("Please enter a password: ");
                     password = stringReader.nextLine();
                     // construct the customer object
-                    customer = new Customer();
-                    customer.setName(name);
-                    customer.setPassword(password);
+                    customer = new Customer(name,password);
                     // add customer and return whether it was successful:
                     boolean loginSuccess = customerDao.add(customer);
                     if(loginSuccess){

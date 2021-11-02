@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72342711-3bbf-4e7d-b27a-584577ec03fa" name="Changes" comment="Wrote out some basic classes to represent the Employee and Customer user types. Also implemented a command line class to parse user input and call the appropriate functions.">
+      <change afterPath="$PROJECT_DIR$/src/com/company/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CustomerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CustomerDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -89,6 +95,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

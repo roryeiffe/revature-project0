@@ -17,7 +17,7 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public boolean add(Customer customer) throws SQLException {
+    public boolean add(User customer) throws SQLException {
         String sql = "insert into customer (name, password) values(?,?)";
         // prepare a statement, make sure to return the keys (id):
         PreparedStatement preparedStatement = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
