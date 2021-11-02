@@ -366,14 +366,18 @@ public class Main {
                     if(!checkLoggedIn("customer","accept a money transfer")) {
                         break;
                     }
-                    transactions = transactionDao.getAllIncoming(customer.getId());
-                    System.out.println(transactions.size());
-                    for(Transaction transaction1: transactions) {
-                        // only accept non-accepted transactions:
-                        if(transaction1.getStatus().equals("pending")) {
-                            System.out.println("Incoming transaction (" + transaction1.getId() + ") from " + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
+                    accounts = accountDao.getAccountsForCustomer(customer.getId());
+                    for(Account account1:accounts) {
+                        transactions = transactionDao.getAllIncoming(account1.getId());
+                        System.out.println(transactions.size());
+                        for(Transaction transaction1: transactions) {
+                            // only accept non-accepted transactions:
+                            if(transaction1.getStatus().equals("pending")) {
+                                System.out.println("Incoming transaction (Transaction id:" + transaction1.getId() + ") from account" + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
+                            }
                         }
-                    }
+
+                }
                     // Get input and retrieve info from the database:
                     System.out.println("Which transaction would you like to accept?");
                     id = numberReader.nextInt();

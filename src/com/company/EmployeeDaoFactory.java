@@ -12,6 +12,8 @@ public class EmployeeDaoFactory {
         }
     }
 
+    // create an instance of the employee dao using
+    // employee as the user type:
     public static UserDao getEmployeeDao() {
         if(dao == null) {
             dao = new UserDaoImpl("employee");

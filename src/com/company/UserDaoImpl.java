@@ -7,19 +7,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// This dao affects both the customer and employee databases.
+// To differentiate between the 2, a member variable, userType, is initialized
+// to either "customer" or "employee". This variable is used to determine
+// which database to query and in some other places:
 public class UserDaoImpl implements UserDao{
 
+    // what type of user dao this is:
     String userType;
-
+    // connection to the database:
     Connection connection;
 
     // constructor initializes a connection and also a user type (customer vs. employee)
     public UserDaoImpl(String userType) {
         // get an instance of the connection:
         this.connection = ConnectionFactory.getConnection();
+        // initialize the user type:
         this.userType = userType;
     }
 
+    // Add a user to the appropriate database, return a boolean
+    // indicating successful add:
     @Override
     public boolean add(User user) throws SQLException {
         // insert into the appropriate table:
@@ -43,6 +51,8 @@ public class UserDaoImpl implements UserDao{
         }
     }
 
+    // Update a user entry in the database that is indicated by
+    // the user object passed in
     @Override
     public void update(User user) throws SQLException {
         String sql = "Update " + userType + " set name = ?, password = ? where id = ?";
@@ -59,6 +69,7 @@ public class UserDaoImpl implements UserDao{
         }
     }
 
+    // Get a list of all users in the given database:
     @Override
     public List<User> getUsers() throws SQLException {
         List<User> users = new ArrayList<>();
@@ -82,6 +93,7 @@ public class UserDaoImpl implements UserDao{
         return users;
     }
 
+    // get a specific user by id:
     @Override
     public User getUserById(int id) throws SQLException {
         User user = null;

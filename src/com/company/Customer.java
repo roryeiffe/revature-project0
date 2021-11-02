@@ -1,9 +1,8 @@
 package com.company;
 
-import java.util.Arrays;
-
 public class Customer extends User{
 
+    // Constructor that just takes name and password:
     public Customer(String name, String password) {
         super.setName(name);
         super.setPassword(password);
@@ -14,6 +13,8 @@ public class Customer extends User{
         super(id,name,password);
     }
 
+    // Small change to string method, print out "Customer"
+    // instead of "User"
     @Override
     public String toString() {
         return "Customer{" +

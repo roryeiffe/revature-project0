@@ -12,6 +12,8 @@ public class CustomerDaoFactory {
         }
     }
 
+    // create an instance of the user dao and pass in
+    // "customer" as the user type:
     public static UserDao getCustomerDao() {
         if(dao == null) {
             dao = new UserDaoImpl("customer");

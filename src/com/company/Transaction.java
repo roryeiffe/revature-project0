@@ -1,13 +1,17 @@
 package com.company;
 
 public class Transaction {
+    // id of this transaction:
     private int id;
+    // id of accounts (not user) involved in the transaction:
     private int donor_id;
     private int recip_id;
+    // amount of money to be transferred:
     private int amount;
+    // status of the transaction (pending, accepted, cancelled, etc.):
     private String status;
 
-    // constructor that just takes donor and recip id's and amount:
+    // constructor that just takes donor and recipient ids and amount:
     public Transaction(int donor_id, int recip_id, int amount){
         this.donor_id = donor_id;
         this.recip_id = recip_id;

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 public class Employee extends User{
 
+    // Employee constructor calls the parent constructor:
     public Employee(int id, String name, String password) {
         super(id,name,password);
     }

@@ -37,7 +37,7 @@ public class TransactionDaoImpl implements TransactionDao{
 
     }
 
-    // update a transaction:
+    // update a transaction entry in the database, given a transaction object:
     @Override
     public void update(Transaction transaction) throws SQLException {
         // only ever need to change status, since the others should stay the same:
@@ -54,7 +54,7 @@ public class TransactionDaoImpl implements TransactionDao{
         }
     }
 
-    // get a specific transaction:
+    // get a specific transaction by id:
     @Override
     public Transaction get(int id) throws SQLException {
         Transaction transaction = null;
@@ -93,17 +93,17 @@ public class TransactionDaoImpl implements TransactionDao{
         return transactions;
     }
 
+    // Get all incoming transactions to a given account (not customer)
     @Override
-    public List<Transaction> getAllIncoming(int custId) throws SQLException {
+    public List<Transaction> getAllIncoming(int accountId) throws SQLException {
         Transaction transaction = null;
         List<Transaction> transactions = new ArrayList<Transaction>();
         String sql = "Select * from transaction where recip_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,custId);
+        preparedStatement.setInt(1,accountId);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             int id_ = resultSet.getInt(1);
-            System.out.println(id_);
             int donor_id = resultSet.getInt(2);
             int recip_id = resultSet.getInt(3);
             int amount = resultSet.getInt(4);
