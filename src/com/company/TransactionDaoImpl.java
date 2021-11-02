@@ -47,7 +47,7 @@ public class TransactionDaoImpl implements TransactionDao{
         preparedStatement.setInt(2,transaction.getId());
         int count = preparedStatement.executeUpdate();
         if (count == 1) {
-            System.out.println("Transaction update successful!");
+            System.out.println("Transaction updated successful!");
         }
         else{
             System.out.println("Oops! Transaction update failed!");

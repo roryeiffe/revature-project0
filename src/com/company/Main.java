@@ -201,6 +201,7 @@ public class Main {
         int input;
         System.out.println("Welcome to the Munny Bank!");
         while(flag) {
+            System.out.println("\n");
             // print out the user options, separated by user type:
             if(customer == null && employee == null) {
                 printGeneralPrompts();
@@ -369,7 +370,6 @@ public class Main {
                     accounts = accountDao.getAccountsForCustomer(customer.getId());
                     for(Account account1:accounts) {
                         transactions = transactionDao.getAllIncoming(account1.getId());
-                        System.out.println(transactions.size());
                         for(Transaction transaction1: transactions) {
                             // only accept non-accepted transactions:
                             if(transaction1.getStatus().equals("pending")) {

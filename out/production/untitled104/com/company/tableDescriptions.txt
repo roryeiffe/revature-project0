@@ -40,3 +40,10 @@ Transactions:
   CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `account` (`id`),
   CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`recip_id`) REFERENCES `account` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+
+Procedures:
++----------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db       | Name                | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++----------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| project0 | getCustomerAccounts | PROCEDURE | root@localhost | 2021-11-02 14:10:31 | 2021-11-02 14:10:31 | DEFINER       |         | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++----------+---------------------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
