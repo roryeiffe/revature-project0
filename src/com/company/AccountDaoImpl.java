@@ -61,7 +61,8 @@ public class AccountDaoImpl implements AccountDao{
     @Override
     public List<Account> getAccountsForCustomer(int custId) throws SQLException {
         List<Account> accounts = new ArrayList<>();
-        String sql = "select * from account where cust_id = ?";
+        // use store procedure:
+        String sql = "CALL getCustomerAccounts(?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1,custId);
         ResultSet resultSet = preparedStatement.executeQuery();

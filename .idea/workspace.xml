@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72342711-3bbf-4e7d-b27a-584577ec03fa" name="Changes" comment="Wrote out some basic classes to represent the Employee and Customer user types. Also implemented a command line class to parse user input and call the appropriate functions.">
+      <change afterPath="$PROJECT_DIR$/src/com/company/tableDescriptions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/test_cases" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/CustomerDaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/CustomerDaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/EmployeeDaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/EmployeeDaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/CustomerDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CustomerDaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/EmployeeDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/EmployeeDaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/AccountDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/AccountDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/TransactionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/TransactionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/TransactionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/TransactionDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserDaoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

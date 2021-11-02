@@ -130,7 +130,7 @@ public class Main {
             System.out.println("You do not own the account. You can only transfer money from an account that you own.");
             valid = false;
         }
-        // if we are trying to receive but are not logged in:
+        // if we are trying to receive but are not logged in to that account:
         if(type == "receive" && (accountRecip.getOwnerId() != customer.getId())) {
             System.out.println("You do not own this account. You can only accept money into an account that you know.");
             valid = false;
