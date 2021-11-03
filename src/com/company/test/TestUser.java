@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUser {
 
+    // ensure that customer creation and get methods are working
     @Test
     public void testGet() {
         Customer customer = new Customer("Rory","password");
