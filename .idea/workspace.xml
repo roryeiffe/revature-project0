@@ -5,48 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72342711-3bbf-4e7d-b27a-584577ec03fa" name="Changes" comment="Wrote out some basic classes to represent the Employee and Customer user types. Also implemented a command line class to parse user input and call the appropriate functions.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/test/TestUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/AccountDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/AccountDaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/AccountDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Customer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/CustomerDaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/EmployeeDaoFactory.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/Transaction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/TransactionDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/TransactionDaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/TransactionDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/UserDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/tableDescriptions.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/test_cases" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_planning.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AccountDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/AccountDaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AccountDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/AccountDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/CustomerDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/CustomerDaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/EmployeeDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/EmployeeDaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/company/transaction/TransactionDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/company/transaction/TransactionDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/TransactionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/TransactionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/TransactionDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/TransactionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/tableDescriptions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tableDescriptions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/test_cases" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test_cases" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project_planning.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/project_planning.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled104.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled104.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +105,7 @@
       <recent name="C:\Users\eiffe\OneDrive\Desktop\revature\revature-project0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestUser">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="untitled104" />
@@ -183,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestUser" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TestUser" />
       </list>
     </recent_temporary>
   </component>

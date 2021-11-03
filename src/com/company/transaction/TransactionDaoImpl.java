@@ -49,7 +49,7 @@ public class TransactionDaoImpl implements TransactionDao{
         preparedStatement.setInt(2,transaction.getId());
         int count = preparedStatement.executeUpdate();
         if (count == 1) {
-            System.out.println("Transaction updated successful!");
+            System.out.println("Transaction updated.");
         }
         else{
             System.out.println("Oops! Transaction update failed!");
@@ -83,7 +83,7 @@ public class TransactionDaoImpl implements TransactionDao{
         String sql = "Select * from transaction";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.next()){
+        while(resultSet.next()){
             int id_ = resultSet.getInt(1);
             int donor_id = resultSet.getInt(2);
             int recip_id = resultSet.getInt(3);

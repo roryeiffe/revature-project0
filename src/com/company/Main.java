@@ -85,6 +85,9 @@ public class Main {
 
     // Check if deposit is valid:
     boolean checkDeposit(Account account, int amount){
+        if(account == null) {
+            return false;
+        }
         boolean valid = true;
         if(amount < 0) {
             System.out.println("Cannot deposit/withdraw negative amounts.");
@@ -103,12 +106,19 @@ public class Main {
 
     // check if withdrawl is valid:
     boolean checkWithdraw(Account account, int amount) {
+        if(account == null) {
+            return false;
+        }
         boolean valid = true;
         // withdrawals must adhere to all deposit rules plus some more:
         valid = checkDeposit(account,amount);
         // make sure the user has enough balance:
         if (account.getBalance() - amount < 0) {
-            System.out.println("Not enough balance.");
+            // only notify of not enough balance if this is indeed our account,
+            // otherwise user's could obtain information about others' accounts:
+            if (account.getOwnerId() == customer.getId()) {
+                System.out.println("Not enough balance.");
+            }
             valid = false;
         }
         return valid;
@@ -124,6 +134,11 @@ public class Main {
         if(accountRecip == null) {
             System.out.println("Receiving account is not valid.");
             valid = false;
+        }
+        // if one or more accounts are null, return here so further code doesn't
+        // throw exception:
+        if(!valid){
+            return false;
         }
         if(!accountDonor.getStatus().equals("verified")) {
             System.out.println("Donor account is not verified, please wait for an employee to verify it.");
@@ -287,6 +302,9 @@ public class Main {
                     }
                     // fetch all accounts for this customer:
                     accounts = accountDao.getAccountsForCustomer(customer.getId());
+                    if(accounts.size() == 0){
+                        System.out.println("You have no current accounts.");
+                    }
                     // print out the customer's accounts:
                     for(Account account1: accounts) {
                         System.out.println(account1.toString());
@@ -301,6 +319,10 @@ public class Main {
                     id = numberReader.nextInt();
                     // fetch the account
                     account = accountDao.getAccountById(id);
+                    if(account == null) {
+                        System.out.println("Account does not exist.");
+                        break;
+                    }
                     // make sure the customer owns this account before printing:
                     if(account.getOwnerId() != customer.getId()) {
                         System.out.println("You do not own this account.");
@@ -357,11 +379,11 @@ public class Main {
                     // get input from the user and fetch accounts from database:
                     System.out.print("Please enter the account id which will give the money: ");
                     donorId = numberReader.nextInt();
-                    Account accountDonor = accountDao.getAccountById(donorId);
                     System.out.print("Please enter the account id which will receive money: ");
                     recipId = numberReader.nextInt();
                     System.out.print("Please enter the amount you would like to transfer: ");
                     money = numberReader.nextInt();
+                    Account accountDonor = accountDao.getAccountById(donorId);
                     Account accountRecip = accountDao.getAccountById(recipId);
 
                     // check that transfer is valid:
@@ -376,16 +398,21 @@ public class Main {
                         break;
                     }
                     accounts = accountDao.getAccountsForCustomer(customer.getId());
+                    int count = 0;
                     for(Account account1:accounts) {
                         transactions = transactionDao.getAllIncoming(account1.getId());
                         for(Transaction transaction1: transactions) {
                             // only accept non-accepted transactions:
                             if(transaction1.getStatus().equals("pending")) {
                                 System.out.println("Incoming transaction (Transaction id:" + transaction1.getId() + ") from account" + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
+                                count ++;
                             }
                         }
-
-                }
+                    }
+                    if(count == 0){
+                        System.out.println("No incoming transactions.");
+                        break;
+                    }
                     // Get input and retrieve info from the database:
                     System.out.println("Which transaction would you like to accept?");
                     id = numberReader.nextInt();
@@ -439,6 +466,7 @@ public class Main {
                         System.out.println("Password incorrect");
                         employee = null;
                     }
+                    customer = null;
                     break;
                 // verify accounts:
                 case 21:
@@ -447,7 +475,7 @@ public class Main {
                     }
                     accounts = accountDao.getAllAccounts();
                     // print out all unverified accounts:
-                    int count = 0;
+                    count = 0;
                     for(Account account1: accounts) {
                         if (account1.getStatus().equals("unverified")){
                             System.out.println(account1.toString());
@@ -489,6 +517,7 @@ public class Main {
                     if(count == 0){
                         System.out.println("This customer has no accounts.");
                     }
+                    customer = null;
                     break;
                 // Exiting the program:
                 case 23:
