@@ -175,29 +175,29 @@ public class Main {
 
     void printCustomerPrompts() {
         System.out.println("Customer Options:");
-        System.out.println("PRESS 12: Apply for Account");
-        System.out.println("PRESS 13: View your accounts");
-        System.out.println("PRESS 14: View a specific account");
-        System.out.println("PRESS 15: Make a deposit");
-        System.out.println("PRESS 16: Make a withdrawal");
-        System.out.println("PRESS 17: Post a transfer");
-        System.out.println("PRESS 18: View/Accept Money Transfers");
-        System.out.println("PRESS 19: Logout");
+        System.out.println("PRESS 10: Apply for Account");
+        System.out.println("PRESS 11: View your accounts");
+        System.out.println("PRESS 12: View a specific account");
+        System.out.println("PRESS 13: Make a deposit");
+        System.out.println("PRESS 14: Make a withdrawal");
+        System.out.println("PRESS 15: Post a transfer");
+        System.out.println("PRESS 16: View/Accept Money Transfers");
+        System.out.println("PRESS 17: Logout");
     }
 
     void printEmployeePrompts() {
         System.out.println("Employee Options:");
-        System.out.println("PRESS 21: Verify accounts");
-        System.out.println("PRESS 22: View accounts for a specific customer");
-        System.out.println("PRESS 23: View a log of all transactions");
-        System.out.println("PRESS 24: Logout");
+        System.out.println("PRESS 20: Verify accounts");
+        System.out.println("PRESS 21: View accounts for a specific customer");
+        System.out.println("PRESS 22: View a log of all transactions");
+        System.out.println("PRESS 23: Logout");
     }
 
     void printGeneralPrompts() {
         System.out.println("General Options");
         System.out.println("PRESS 1: Register as Customer");
         System.out.println("PRESS 2: Login as Customer");
-        System.out.println("PRESS 20: Login as employee");
+        System.out.println("PRESS 3: Login as employee");
     }
 
     public void mainFunction() throws SQLException {
@@ -239,7 +239,7 @@ public class Main {
             else if(customer == null && employee != null) {
                 printEmployeePrompts();
             }
-            System.out.println("PRESS 3: Exit");
+            System.out.println("PRESS 4: Exit");
             System.out.println("***********************************");
             input = numberReader.nextInt();
             switch(input) {
@@ -288,7 +288,7 @@ public class Main {
                     }
                     break;
                 // Apply for account
-                case 12:
+                case 10:
                     if(!checkLoggedIn("customer","apply for account")) {
                         break;
                     }
@@ -304,7 +304,7 @@ public class Main {
                     System.out.println("Please wait for your account to be verified.");
                     break;
                 // View Accounts
-                case 13:
+                case 11:
                     if(!checkLoggedIn("customer","view accounts")) {
                         break;
                     }
@@ -322,7 +322,7 @@ public class Main {
                     }
                     break;
                 // View Specific Account:
-                case 14:
+                case 12:
                     if(!checkLoggedIn("customer","view account")) {
                         break;
                     }
@@ -345,7 +345,7 @@ public class Main {
                     }
                     break;
                 // Make a deposit:
-                case 15:
+                case 13:
                     if(!checkLoggedIn("customer","make a deposit")) {
                         break;
                     }
@@ -365,7 +365,7 @@ public class Main {
                     }
                     break;
                 // Make a withdrawal:
-                case 16:
+                case 14:
                     if(!checkLoggedIn("customer","withdraw from an account")) {
                         break;
                     }
@@ -384,7 +384,7 @@ public class Main {
                     }
                     break;
                 // Post a money transfer:
-                case 17:
+                case 15:
                     if(!checkLoggedIn("customer","post a money transfer")) {
                         break;
                     }
@@ -405,7 +405,7 @@ public class Main {
                     }
                     break;
                 // Accept money transfer:
-                case 18:
+                case 16:
                     if(!checkLoggedIn("customer","accept a money transfer")) {
                         break;
                     }
@@ -454,12 +454,12 @@ public class Main {
                     }
 
                     break;
-                case 19:
+                case 17:
                     customer = null;
                     System.out.println("\nThank you for using the Munny Bank! Logging out!");
                     break;
                 // Employee Login:
-                case 20:
+                case 3:
                     // Get user information:
                     System.out.print("Please enter your employee id: ");
                     id = numberReader.nextInt();
@@ -482,7 +482,7 @@ public class Main {
                     customer = null;
                     break;
                 // verify accounts:
-                case 21:
+                case 20:
                     if(!checkLoggedIn("employee","verify accounts")) {
                         break;
                     }
@@ -500,7 +500,7 @@ public class Main {
                         break;
                     }
                     // take user input:
-                    System.out.print("Enter the account id you would like to verify: ");
+                    System.out.print("\nEnter the account id you would like to verify: ");
                     id = numberReader.nextInt();
                     account = accountDao.getAccountById(id);
                     if (account != null && !account.getStatus().equals("verified")){
@@ -510,7 +510,7 @@ public class Main {
                     }
                     break;
                 // View accounts for a specific customer:
-                case 22:
+                case 21:
                     if(!checkLoggedIn("employee","view accounts")) {
                         break;
                     }
@@ -519,7 +519,7 @@ public class Main {
                     id = numberReader.nextInt();
                     customer = customerDao.getUserById(id);
                     if(customer == null) {
-                        System.out.println("This customer does not exist.");
+                        System.out.println("\nThis customer does not exist.");
                         break;
                     }
                     accounts = accountDao.getAccountsForCustomer(id);
@@ -530,12 +530,12 @@ public class Main {
                         count ++;
                     }
                     if(count == 0){
-                        System.out.println("This customer has no accounts.");
+                        System.out.println("\nThis customer has no accounts.");
                     }
                     customer = null;
                     break;
                 // Exiting the program:
-                case 23:
+                case 22:
                     if(!checkLoggedIn("employee","view transactions")) {
                         break;
                     }
@@ -544,11 +544,11 @@ public class Main {
                         transaction1.print();
                     }
                     break;
-                case 24:
+                case 23:
                     employee = null;
                     System.out.println("\nThank you for using the Munny Bank! Logging out!");
                     break;
-                case 3:
+                case 4:
                     System.out.println("Thank you for using the munny bank!");
                     flag = false;
                     break;
