@@ -27,12 +27,12 @@ public class Account {
         this.ownerId = ownerId;
     }
 
-    // constructor that just takes name and ownerId and automatically sets the other values
+    // constructor that just takes name, ownerId, and balance and automatically sets the other values
     // to default:
-    public Account(String name, int ownerId) {
+    public Account(String name, int ownerId, int balance) {
         this.name = name;
         this.ownerId = ownerId;
-        this.balance = 0;
+        this.balance = balance;
         this.status = "unverified";
     }
 
@@ -86,5 +86,22 @@ public class Account {
                 ", balance=" + balance +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    public void print() {
+        System.out.print("The account \"");
+        System.out.print(name + "\" (id: " + id + ") ");
+        System.out.print("has " + balance + " dollars in it.");
+        System.out.println(" It is currently " + status + ".");
+    }
+
+    public void printUnverified() {
+        if(!status.equals("unverified")) {
+            System.out.println("Something went wrong.");
+            return;
+        }
+        System.out.print("Customer with id " + ownerId + " has applied for an account with a starting balance of " + balance);
+        System.out.println(". Please enter the id " + id + " to verify this account.");
+
     }
 }

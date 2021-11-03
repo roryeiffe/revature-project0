@@ -77,4 +77,8 @@ public class Transaction {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    public void print() {
+        System.out.println("Account " + donor_id + " transferred " + amount + " dollars to account " + recip_id + " The transaction is currently " + status + ".");
+    }
 }

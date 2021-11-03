@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="72342711-3bbf-4e7d-b27a-584577ec03fa" name="Changes" comment="Wrote out some basic classes to represent the Employee and Customer user types. Also implemented a command line class to parse user input and call the appropriate functions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/account/AccountDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/account/AccountDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/transaction/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/transaction/TransactionDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/user/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/user/UserDaoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,19 +129,6 @@
       <option name="PACKAGE_NAME" value="com.company.test" />
       <option name="MAIN_CLASS_NAME" value="com.company.test.TestUser" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="untitled104" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="untitled104" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

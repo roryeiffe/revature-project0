@@ -41,7 +41,6 @@ public class UserDaoImpl implements UserDao{
         int count = preparedStatement.executeUpdate();
         ResultSet resultSet = preparedStatement.getGeneratedKeys();
         if(count == 1) {
-            System.out.println(userType + " account successfully registed!");
             resultSet.next();
             int id = resultSet.getInt(1);
             user.setId(id);
@@ -114,9 +113,6 @@ public class UserDaoImpl implements UserDao{
             else{
                 user = new Employee(id_,name,password);
             }
-        }
-        else{
-            System.out.println(userType + " not found.");
         }
         return user;
     }

@@ -85,7 +85,9 @@ public class Main {
 
     // Check if deposit is valid:
     boolean checkDeposit(Account account, int amount){
+        System.out.println();
         if(account == null) {
+            System.out.println("This account does not exist.");
             return false;
         }
         boolean valid = true;
@@ -126,6 +128,7 @@ public class Main {
 
     // check if a transfer is valid, both from the giving and receiving end:
     boolean checkTransfer(Account accountDonor, Account accountRecip, String type, int amount) {
+        System.out.println();
         boolean valid = true;
         if(accountDonor == null) {
             System.out.println("Donor account is not valid.");
@@ -224,7 +227,8 @@ public class Main {
         int input;
         System.out.println("Welcome to the Munny Bank!");
         while(flag) {
-            System.out.println("\n");
+            System.out.println();
+            System.out.println("***********************************");
             // print out the user options, separated by user type:
             if(customer == null && employee == null) {
                 printGeneralPrompts();
@@ -236,6 +240,7 @@ public class Main {
                 printEmployeePrompts();
             }
             System.out.println("PRESS 3: Exit");
+            System.out.println("***********************************");
             input = numberReader.nextInt();
             switch(input) {
                 // Customer Register:
@@ -251,7 +256,7 @@ public class Main {
                     boolean loginSuccess = customerDao.add(customer);
                     if(loginSuccess){
                         // Print a welcome message:
-                        System.out.println("Welcome to the Munny Bank " + customer.getName() + "!");
+                        System.out.println("\nWelcome to the Munny Bank " + customer.getName() + "!");
                         System.out.println("Your id is " + customer.getId() + ", you will need this to log in!");
                         employee = null;
                     }
@@ -269,15 +274,15 @@ public class Main {
                     // make the query:
                     customer = customerDao.getUserById(id);
                     if (customer == null) {
-                        System.out.println("Id does not exist.");
+                        System.out.println("\nCustomer with this id does not exist.");
                     }
                     else if (customer.getPassword().equals(password)) {
-                        System.out.println("Login successful! Welcome " + customer.getName());
+                        System.out.println("\nLogin successful! Welcome " + customer.getName());
                         employee = null;
                     }
                     else{
                         // if wrong password, reset customer back to null:
-                        System.out.println("Password incorrect");
+                        System.out.println("\nPassword incorrect");
                         loggedInCustomer = false;
                         customer = null;
                     }
@@ -290,10 +295,13 @@ public class Main {
                     // Prompt the user for account information:
                     System.out.print("Please enter account type (checkings, savings, etc): ");
                     String accountName = stringReader.nextLine();
-                    account = new Account(accountName, customer.getId());
+                    System.out.print("Please enter your starting balance: ");
+                    int amount = numberReader.nextInt();
+                    account = new Account(accountName, customer.getId(),amount);
                     // Add the account to the database and return the new id:
                     accountDao.add(account);
-                    System.out.println("Your account id is " + account.getId());
+                    System.out.println("\nYour account id is " + account.getId());
+                    System.out.println("Please wait for your account to be verified.");
                     break;
                 // View Accounts
                 case 13:
@@ -305,9 +313,12 @@ public class Main {
                     if(accounts.size() == 0){
                         System.out.println("You have no current accounts.");
                     }
+                    else{
+                        System.out.println("Here are your accounts:");
+                    }
                     // print out the customer's accounts:
                     for(Account account1: accounts) {
-                        System.out.println(account1.toString());
+                        account1.print();
                     }
                     break;
                 // View Specific Account:
@@ -320,16 +331,17 @@ public class Main {
                     // fetch the account
                     account = accountDao.getAccountById(id);
                     if(account == null) {
-                        System.out.println("Account does not exist.");
+                        System.out.println("\nAccount does not exist.");
                         break;
                     }
                     // make sure the customer owns this account before printing:
                     if(account.getOwnerId() != customer.getId()) {
-                        System.out.println("You do not own this account.");
+                        System.out.println("\nYou do not own this account.");
                         break;
                     }
                     else{
-                        System.out.println(account.toString());
+                        System.out.println();
+                        account.print();
                     }
                     break;
                 // Make a deposit:
@@ -349,7 +361,7 @@ public class Main {
                         account.setBalance(account.getBalance() + money);
                         // update the database:
                         accountDao.update(account);
-                        System.out.println("Deposit successful!");
+                        System.out.println("\nDeposit successful!");
                     }
                     break;
                 // Make a withdrawal:
@@ -404,13 +416,13 @@ public class Main {
                         for(Transaction transaction1: transactions) {
                             // only accept non-accepted transactions:
                             if(transaction1.getStatus().equals("pending")) {
-                                System.out.println("Incoming transaction (Transaction id:" + transaction1.getId() + ") from account" + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
+                                System.out.println("Incoming transaction (id: " + transaction1.getId() + ") from account " + transaction1.getDonor_id() + " for " + transaction1.getAmount() + " dollars.");
                                 count ++;
                             }
                         }
                     }
                     if(count == 0){
-                        System.out.println("No incoming transactions.");
+                        System.out.println("\nNo incoming transactions.");
                         break;
                     }
                     // Get input and retrieve info from the database:
@@ -444,6 +456,7 @@ public class Main {
                     break;
                 case 19:
                     customer = null;
+                    System.out.println("\nThank you for using the Munny Bank! Logging out!");
                     break;
                 // Employee Login:
                 case 20:
@@ -478,21 +491,22 @@ public class Main {
                     count = 0;
                     for(Account account1: accounts) {
                         if (account1.getStatus().equals("unverified")){
-                            System.out.println(account1.toString());
+                            account1.printUnverified();
                             count ++;
                         }
                     }
                     if(count == 0) {
-                        System.out.println("No unverified accounts!");
+                        System.out.println("\nNo unverified accounts!");
                         break;
                     }
                     // take user input:
-                    System.out.println("Enter the account id you would like to verify:");
+                    System.out.print("Enter the account id you would like to verify: ");
                     id = numberReader.nextInt();
                     account = accountDao.getAccountById(id);
                     if (account != null && !account.getStatus().equals("verified")){
                         account.setStatus("verified");
                         accountDao.update(account);
+                        System.out.println("\nAccount verified!");
                     }
                     break;
                 // View accounts for a specific customer:
@@ -510,8 +524,9 @@ public class Main {
                     }
                     accounts = accountDao.getAccountsForCustomer(id);
                     count = 0;
+                    System.out.println();
                     for(Account account1: accounts) {
-                        System.out.println(account1.toString());
+                        account1.print();
                         count ++;
                     }
                     if(count == 0){
@@ -526,16 +541,19 @@ public class Main {
                     }
                     transactions = transactionDao.getAll();
                     for(Transaction transaction1:transactions) {
-                        System.out.println(transaction1.toString());
+                        transaction1.print();
                     }
                     break;
                 case 24:
                     employee = null;
+                    System.out.println("\nThank you for using the Munny Bank! Logging out!");
                     break;
                 case 3:
                     System.out.println("Thank you for using the munny bank!");
                     flag = false;
                     break;
+                default:
+                    System.out.println("\nSorry, please enter a valid command.");
             }
         }
     }

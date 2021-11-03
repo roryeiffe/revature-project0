@@ -21,11 +21,12 @@ public class AccountDaoImpl implements AccountDao{
     // Given an account object, insert into the database:
     @Override
     public void add(Account account) throws SQLException {
-        String sql = "insert into account (name, cust_id) values(?, ?)";
+        String sql = "insert into account (name, cust_id, balance) values(?, ?, ?)";
         // make sure we get the account id back:
         PreparedStatement preparedStatement = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1,account.getName());
         preparedStatement.setInt(2,account.getOwnerId());
+        preparedStatement.setInt(3,account.getBalance());
         int count = preparedStatement.executeUpdate();
         ResultSet resultSet = preparedStatement.getGeneratedKeys();
         if(count == 1) {
@@ -50,10 +51,7 @@ public class AccountDaoImpl implements AccountDao{
         preparedStatement.setString(3,account.getStatus());
         preparedStatement.setInt(4,account.getId());
         int count = preparedStatement.executeUpdate();
-        if(count == 1){
-            System.out.println("Account updated successfully!");
-        }
-        else{
+        if(count != 1){
             System.out.println("Oops! Something went wrong updating the account.");
         }
 
@@ -120,9 +118,6 @@ public class AccountDaoImpl implements AccountDao{
             String status = resultSet.getString(5);
             // create account object:
             account = new Account(id,name,custId_,balance,status);
-        }
-        else{
-            System.out.println("Account not found.");
         }
         return account;
     }
